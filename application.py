@@ -2,7 +2,6 @@ import constants
 import copy
 import statistics
 
-
 players_copy = copy.deepcopy(constants.PLAYERS)
 teams_copy = copy.deepcopy(constants.TEAMS)
 experienced_players = []
@@ -27,9 +26,11 @@ def height_splitter():
         player['height'] = int(player['height'].split(' ')[0])
 
 
-def guardian_to_string():
+def guardian_list():
     for player in players_copy:
-        player['guardians'] = player['guardians'].replace(' and', ',')
+        player['guardians'] = player['guardians'].split(' and ')
+        # player['guardians'] = player['guardians'].replace(' and', ',')
+        # instructions said to make a list, but this code seemed a more simple way to ge the same output
 
 
 def team_builder(team1, team2, team3):
@@ -72,8 +73,12 @@ def roster_size(team):
 
 
 def team_guardians(team):
-    guardian_string = ', '.join([player['guardians'] for player in team])
+    guardian_lst = [', '.join(player['guardians']) for player in team]
+    guardian_string = ', '.join([str(guardian) for guardian in guardian_lst])
     return guardian_string
+    #', '.join([player['guardian'] for player in team])
+    # this is the second part of the code I had originally written
+    # though I do see that converting the guardians to a list could have other advantages
 
 
 def teams_stats_display(team, index):
@@ -142,6 +147,6 @@ def display_data():
 if __name__ == "__main__":
     experience_check()
     height_splitter()
-    guardian_to_string()
+    guardian_list()
     team_builder(panthers, bandits, warriors)
     display_data()
