@@ -76,7 +76,7 @@ def team_guardians(team):
     guardian_lst = [', '.join(player['guardians']) for player in team]
     guardian_string = ', '.join([str(guardian) for guardian in guardian_lst])
     return guardian_string
-    #', '.join([player['guardian'] for player in team])
+    # ', '.join([player['guardian'] for player in team])
     # this is the second part of the code I had originally written
     # though I do see that converting the guardians to a list could have other advantages
 
